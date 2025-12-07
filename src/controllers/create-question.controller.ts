@@ -1,12 +1,12 @@
 import { Controller, Post, UseGuards } from '@nestjs/common'
-import { AuthGuard } from '@nestjs/passport'
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard'
 
 @Controller('/questions')
 export class CreateQuestionController {
   constructor() {}
 
   @Post()
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(JwtAuthGuard)
   async handle() {
     return 'autenticado'
   }
