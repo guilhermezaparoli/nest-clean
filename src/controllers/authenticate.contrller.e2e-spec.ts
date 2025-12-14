@@ -18,7 +18,7 @@ describe('Authenticate E2E', () => {
     prisma = moduleRef.get(PrismaService)
     await app.init()
   })
-  test('[POST] /accounts', async () => {
+  test('[POST] /authenticate', async () => {
     const user = {
       name: 'Jhon Doe',
       email: 'jhondow@gmail.com',
