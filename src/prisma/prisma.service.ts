@@ -12,9 +12,19 @@ export class PrismaService
   private pool: Pool
 
   constructor() {
-    const pool = new Pool({ connectionString: process.env.DATABASE_URL })
+    const url = new URL(process.env.DATABASE_URL!)
+    const schema = url.searchParams.get('schema') || 'public'
 
-    const adapter = new PrismaPg(pool)
+    url.searchParams.delete('schema')
+
+    const pool = new Pool({
+      connectionString: url.toString(),
+    })
+
+    const adapter = new PrismaPg(pool, {
+      schema,
+    })
+
     super({
       adapter,
       log: ['warn', 'error'],
