@@ -20,4 +20,17 @@ export class PrismaQuestionMapper {
       new UniqueEntityID(id),
     )
   }
+
+  static toPersistence(raw: Question): PrismaQuestion {
+    const { authorId, title, content, slug, createdAt, updatedAt, id } = raw
+    return {
+      authorId: authorId.toString(),
+      content,
+      title,
+      slug: slug.value,
+      createdAt,
+      updatedAt: updatedAt ?? null,
+      id: id.toString(),
+    }
+  }
 }
