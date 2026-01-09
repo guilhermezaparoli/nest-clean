@@ -1,7 +1,8 @@
 import { Question } from '@/domain/forum/enterprise/entities/question'
-import type { QuestionsRepository } from '../repositories/questions-repository'
+import { QuestionsRepository } from '../repositories/questions-repository'
 import type { PaginationParams } from '@/core/repositories/pagination-params'
 import { right, type Either } from '@/core/either'
+import { Injectable } from '@nestjs/common'
 
 interface FetchRecentQuestionsUseCaseRequest extends PaginationParams {}
 
@@ -11,7 +12,7 @@ type FetchRecentQuestionsUseCaseResponse = Either<
     questions: Question[]
   }
 >
-
+@Injectable()
 export class FetchRecentQuestionsUseCase {
   constructor(private questionsRepository: QuestionsRepository) {}
 
