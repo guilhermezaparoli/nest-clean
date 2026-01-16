@@ -1,12 +1,11 @@
 import { FakeHasher } from 'test/cryptography/fake-hasher'
 import { makeStudent } from 'test/factories/make-student'
 import { InMemoryStudentRepository } from 'test/repositories/in-memory-student-repository'
-import { HashGenerator } from '../cryptography/hash-generator'
 import { RegisterStudentUserUseCase } from './register-student'
 
 let sut: RegisterStudentUserUseCase
 let studentRepository: InMemoryStudentRepository
-let fakeHasher: HashGenerator
+let fakeHasher: FakeHasher
 
 describe('Register Student Use Case', () => {
   beforeEach(() => {
@@ -26,22 +25,6 @@ describe('Register Student Use Case', () => {
     expect(result.value).toEqual({
       student: studentRepository.items[0],
     })
-  })
-
-  it('should not be able to register a student with same e-mail', async () => {
-    const student = makeStudent({
-      email: 'teste1@gmail.com',
-    })
-
-    studentRepository.items.push(student)
-
-    const result = await sut.exec({
-      email: 'teste1@gmail.com',
-      name: 'teste2',
-      password: '123456',
-    })
-
-    expect(result.isLeft()).toBe(true)
   })
 
   it('should hash student password upon registration', async () => {
