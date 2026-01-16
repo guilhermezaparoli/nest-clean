@@ -2,8 +2,8 @@ import { InMemoryNotificationsRepository } from 'test/repositories/in-memory-not
 import { ReadNotificationUseCase } from './read-notification'
 import { makeNotification } from 'test/factories/make-notification'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
-import { NotAllowedError } from '@/domain/forum/application/use-cases/errors/not-allowed-error'
-import { ResourceNotFoundError } from '@/domain/forum/application/use-cases/errors/resource-not-found-error'
+import { NotAllowedError } from '@/core/errors/not-allowed-error'
+import { ResourceNotFoundError } from '@/core/errors/resource-not-found-error'
 
 let notificationsRepository: InMemoryNotificationsRepository
 
