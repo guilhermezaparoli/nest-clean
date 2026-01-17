@@ -16,14 +16,14 @@ export class PrismaStudentMapper {
     )
   }
   static toPersistance(student: Student): User {
-    const { email, id, name, password } = student
+    const { email, id, name, password, role } = student
 
     return {
       id: id.toString(),
       email,
       name,
       password,
-      role: 'STUDENT',
+      role,
     }
   }
 }
