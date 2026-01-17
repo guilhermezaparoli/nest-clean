@@ -10,7 +10,8 @@ Content-Type: application/json
 {
     "name": "Diego Fernandes",
     "email": "dieg1o@rocketseat.com.br",
-    "password": "123456"
+    "password": "123456",
+    "role": "STUDENT"
 }
 
 
@@ -37,7 +38,7 @@ Authorization: Bearer {{authToken}}
 
 
 {
-    "title": "New Question1212",
+    "title": "New Question12122",
     "content": "tewtwtwetewtwetwet23424234"
 }
 
