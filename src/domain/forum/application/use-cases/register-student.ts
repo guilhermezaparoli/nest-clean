@@ -4,11 +4,13 @@ import { Student } from '../../enterprise/entities/student'
 import { Either, left, right } from '@/core/either'
 import { StudentRepository } from '../repositories/user-repository'
 import { StudentAlreadyExistsError } from './errors/student-already-exists'
+import { UserRole } from 'generated/prisma/enums'
 
 interface RegisterStudentUseCaseRequest {
   name: string
   password: string
   email: string
+  role: UserRole
 }
 
 type RegisterStudentUseCaseResponse = Either<
@@ -29,6 +31,7 @@ export class RegisterStudentUserUseCase {
     email,
     name,
     password,
+    role,
   }: RegisterStudentUseCaseRequest): Promise<RegisterStudentUseCaseResponse> {
     const userWithSameEmail = await this.studentRepository.findByEmail(email)
 
@@ -42,6 +45,7 @@ export class RegisterStudentUserUseCase {
       email,
       name,
       password: hashedPassword,
+      role,
     })
 
     await this.studentRepository.create(student)
