@@ -20,6 +20,11 @@ export class Student extends Entity<StudentProps> {
   get password() {
     return this.props.password
   }
+
+  get role() {
+    return this.props.role
+  }
+
   static create(props: StudentProps, id?: UniqueEntityID) {
     const student = new Student(
       {
