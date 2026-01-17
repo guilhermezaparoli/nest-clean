@@ -3,7 +3,13 @@ import { CurrentUser } from '@/infra/auth/current-user.decorator'
 import type { UserPayload } from '@/infra/auth/jtw.strategy'
 import { JwtAuthGuard } from '@/infra/auth/jwt-auth.guard'
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe'
-import { Body, Controller, Post, UseGuards } from '@nestjs/common'
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Post,
+  UseGuards,
+} from '@nestjs/common'
 import z from 'zod'
 
 const createQuestionBodySchema = z.object({
@@ -26,11 +32,15 @@ export class CreateQuestionController {
     const { title, content } = body
     const authorId = user.sub
 
-    await this.createQuestion.exec({
+    const result = await this.createQuestion.exec({
       authorId,
       title,
       content,
       attachmentsIds: [],
     })
+
+    if (result.isLeft()) {
+      throw new BadRequestException()
+    }
   }
 }
