@@ -4,7 +4,6 @@ import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 interface QuestionAttachmentProps {
   questionId: UniqueEntityID
   attachmentId: UniqueEntityID
-  answerId: UniqueEntityID
   title: string
   url: string
 }
@@ -16,10 +15,6 @@ export class QuestionAttachment extends Entity<QuestionAttachmentProps> {
 
   get attachmentId() {
     return this.props.attachmentId
-  }
-
-  get answerId() {
-    return this.props.answerId
   }
 
   get title() {

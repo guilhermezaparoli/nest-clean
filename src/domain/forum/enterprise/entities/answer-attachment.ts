@@ -4,6 +4,8 @@ import type { UniqueEntityID } from '@/core/entities/unique-entity-id'
 export interface AnswerAttachmentProps {
   answerId: UniqueEntityID
   attachmentId: UniqueEntityID
+  title: string
+  url: string
 }
 
 export class AnswerAttachment extends Entity<AnswerAttachmentProps> {
