@@ -5,9 +5,9 @@ import { Attachment as PrismaAnswerAttachment } from 'generated/prisma/client'
 
 export class PrismaAnswerAttachmentMapper {
   static toDomain(raw: PrismaAnswerAttachment): AnswerAttachment {
-    const { answerId, id, questionId, title, url } = raw
+    const { answerId, id, title, url } = raw
 
-    if (!questionId) {
+    if (!answerId) {
       throw new Error('Invalid attachment type.')
     }
     return AnswerAttachment.create(
