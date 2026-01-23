@@ -2,7 +2,9 @@ import { StudentRepository } from '@/domain/forum/application/repositories/user-
 import { Student } from '@/domain/forum/enterprise/entities/student'
 import { PrismaService } from '../prisma.service'
 import { PrismaStudentMapper } from '../mappers/prisma-student-mapper'
+import { Injectable } from '@nestjs/common'
 
+@Injectable()
 export class PrismaStudentsRepository implements StudentRepository {
   constructor(private prisma: PrismaService) {}
   async findByEmail(email: string): Promise<Student | null> {
