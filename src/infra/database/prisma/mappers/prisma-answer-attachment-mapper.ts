@@ -5,7 +5,7 @@ import { Attachment as PrismaAnswerAttachment } from 'generated/prisma/client'
 
 export class PrismaAnswerAttachmentMapper {
   static toDomain(raw: PrismaAnswerAttachment): AnswerAttachment {
-    const { answerId, id, title, url } = raw
+    const { answerId, id } = raw
 
     if (!answerId) {
       throw new Error('Invalid attachment type.')
@@ -14,8 +14,6 @@ export class PrismaAnswerAttachmentMapper {
       {
         answerId: new UniqueEntityID(answerId),
         attachmentId: new UniqueEntityID(id),
-        title,
-        url,
       },
       new UniqueEntityID(id),
     )
