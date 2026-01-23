@@ -22,7 +22,9 @@ describe('Create account E2E', () => {
       name: 'John Dow',
       email: 'jhondoe@gmail.com',
       password: '12346',
+      role: 'STUDENT',
     })
+
     expect(response.statusCode).toEqual(201)
 
     const userOnDatabase = await prisma.user.findUnique({
